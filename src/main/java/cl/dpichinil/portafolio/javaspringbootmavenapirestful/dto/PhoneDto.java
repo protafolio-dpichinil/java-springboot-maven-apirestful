@@ -1,4 +1,4 @@
-package cl.dpichinil.portafolio.javaspringbootapirestful.dto;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

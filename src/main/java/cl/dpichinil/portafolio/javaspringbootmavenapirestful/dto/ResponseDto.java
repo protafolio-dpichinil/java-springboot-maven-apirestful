@@ -1,4 +1,4 @@
-package cl.dpichinil.portafolio.javaspringbootapirestful.dto;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto;
 
 import lombok.Data;
 
