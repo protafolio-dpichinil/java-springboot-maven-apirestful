@@ -1,8 +1,8 @@
-package cl.dpichinil.portafolio.javaspringbootapirestful.controller;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.controller;
 
-import cl.dpichinil.portafolio.javaspringbootapirestful.dto.ResponseDto;
-import cl.dpichinil.portafolio.javaspringbootapirestful.dto.UserDto;
-import cl.dpichinil.portafolio.javaspringbootapirestful.service.UserService;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.ResponseDto;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.UserDto;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cl.dpichinil.portafolio</groupId>
-    <artifactId>java-springboot-apirestful</artifactId>
+    <artifactId>java-springboot-maven-apirestful</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-springboot-apirestful</name>
-    <description>java-springboot-apirestful</description>
+    <name>java-springboot-maven-apirestful</name>
+    <description>java-springboot-maven-apirestful</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

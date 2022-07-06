@@ -1,14 +1,15 @@
-package cl.dpichinil.portafolio.javaspringbootapirestful.persistence.entity;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.persistence.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "phone")
+@Table(name = "\"phone\"")
 @Data
 public class Phone {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "phone_id")
     private int id;
 
@@ -21,7 +22,7 @@ public class Phone {
     @Column(name = "country_code", length = 2, nullable = false)
     private String countryCode;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 }
