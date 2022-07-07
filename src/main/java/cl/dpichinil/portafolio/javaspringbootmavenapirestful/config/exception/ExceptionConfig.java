@@ -1,5 +1,6 @@
-package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.exception;
 
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties.MessageProperties;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.ResponseDto;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.util.Parse;
 import lombok.RequiredArgsConstructor;

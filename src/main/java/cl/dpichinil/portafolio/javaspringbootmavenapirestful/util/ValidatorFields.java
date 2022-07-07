@@ -1,12 +1,14 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful.util;
 
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.CustomException;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.exception.CustomException;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.UserDto;
+import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@UtilityClass
 public class ValidatorFields {
     public static void validateUserDto(UserDto dto) {
         if(validatePassword(dto.getPassword()))

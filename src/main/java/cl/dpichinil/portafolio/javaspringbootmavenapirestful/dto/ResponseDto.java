@@ -9,5 +9,4 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ResponseDto {
     private final String message;
-
 }

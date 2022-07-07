@@ -1,5 +1,7 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful.util;
 
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties.ApplicationProperties;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties.MessageProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,11 +15,6 @@ import java.util.Map;
 
 @UtilityClass
 public class TokenUtil {
-    private static Long defaultExpiration;
-
-    public static Long setDefaultExpiration(Long defaultExpiration) {
-        return TokenUtil.defaultExpiration = defaultExpiration;
-    }
 
     public static String getUsernameFromToken(String token) {
         String username;
@@ -55,9 +52,10 @@ public class TokenUtil {
         return claims;
     }
 
-    private static Date generateExpirationDate() {
+    private static Date generateExpirationDate(ApplicationProperties applicationProperties) {
         long expirationMillis = 0L;
-        expirationMillis = defaultExpiration * 1000;
+        expirationMillis = applicationProperties.getJwtExpiration() * 1000;
+        //expirationMillis = 60400 * 1000;
         return new Date(System.currentTimeMillis() + expirationMillis);
     }
 
@@ -66,27 +64,27 @@ public class TokenUtil {
         return expiration.before(new Date());
     }
 
-    public static String generateToken(String username) {
+    public static String generateToken(String username, ApplicationProperties applicationProperties) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(Constant.CLAIM_KEY_USERNAME, username);
         claims.put(Constant.CLAIM_KEY_CREATED, new Date());
-        return generateToken(claims);
+        return generateToken(claims, applicationProperties);
     }
 
-    private static String generateToken(Map<String, Object> claims) {
+    private static String generateToken(Map<String, Object> claims, ApplicationProperties appliApplicationProperties) {
         return Jwts.builder()
                 .setClaims(claims)
-                .setExpiration(generateExpirationDate())
+                .setExpiration(generateExpirationDate(appliApplicationProperties))
                 .signWith(SignatureAlgorithm.HS512, Constant.KEY)
                 .compact();
     }
 
-    public static String refreshToken(String token) {
+    public static String refreshToken(String token, ApplicationProperties applicationProperties) {
         String refreshedToken;
         try {
             final Claims claims = getClaimsFromToken(token);
             claims.put(Constant.CLAIM_KEY_CREATED, new Date());
-            refreshedToken = generateToken(claims);
+            refreshedToken = generateToken(claims, applicationProperties);
         } catch (Exception e) {
             refreshedToken = null;
         }

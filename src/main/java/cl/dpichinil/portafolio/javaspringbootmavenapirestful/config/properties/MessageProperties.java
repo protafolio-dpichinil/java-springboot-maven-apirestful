@@ -1,4 +1,4 @@
-package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties;
 
 import lombok.Data;
 import lombok.Getter;

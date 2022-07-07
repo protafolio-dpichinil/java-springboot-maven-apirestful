@@ -1,10 +1,13 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful.util;
 
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.MessageProperties;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties.MessageProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Parse {
+    private static ObjectMapper mapper = new ObjectMapper();
+
     public static String generateMessageProperties(MessageProperties messageProperties, int code, String module) {
         String response = "";
         switch (module){
@@ -15,5 +18,21 @@ public class Parse {
                 break;
         }
         return response;
+    }
+
+    public static <T> T JsonToObject(String json, Class<T> classType){
+        try {
+            return (T) Parse.mapper.readValue(json, classType);
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    public static String ObjectToJson(Object object) {
+        try {
+            return Parse.mapper.writeValueAsString(object);
+        }catch(Exception e){
+            return null;
+        }
     }
 }

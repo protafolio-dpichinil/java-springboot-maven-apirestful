@@ -1,8 +1,8 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful.service.impl;
 
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.CustomException;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.exception.CustomException;
+import cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.properties.ApplicationProperties;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.PhoneDto;
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.ResponseDto;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.UserDto;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.mapper.PhoneMapper;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.mapper.UserMapper;
@@ -19,23 +19,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PhoneRepository phoneRepository;
+    private final ApplicationProperties applicationProperties;
 
     @Override
-    @Transactional
     public UserDto insertUser(UserDto dto) {
         ValidatorFields.validateUserDto(dto);
 
         int count = userRepository.getByEmail(dto.getEmail());
         if(count > 0) throw new CustomException(1003, HttpStatus.INTERNAL_SERVER_ERROR, "insertUser");
-        String token = TokenUtil.generateToken(dto.getEmail());
+        String token = TokenUtil.generateToken(dto.getEmail(), applicationProperties);
         dto.setToken(token);
 
         User user = UserMapper.parseUserDtoToUser(dto);
@@ -62,9 +64,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserById(int id) {
         UserDto dto = null;
-        Optional<User> u = userRepository.findById(id);
-        if(u.isPresent()){
-            dto = UserMapper.parseUserToUserDto( u.get()  );
+        Optional<User> optional = userRepository.findById(id);
+        if(optional.isPresent()){
+            User user = optional.get();
+            user.setLastLogin(new Date());
+            user = userRepository.save(user);
+            dto = UserMapper.parseUserToUserDto( user );
         }
         return dto;
     }

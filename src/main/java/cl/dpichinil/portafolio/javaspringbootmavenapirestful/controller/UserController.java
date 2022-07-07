@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @Value("${jwt.expiration}")
-    private Long defaultExpiration;
 
-    @PostMapping("/")
+    @PostMapping("/insert")
     public ResponseEntity<UserDto> insert(@RequestBody UserDto dto){
-        TokenUtil.setDefaultExpiration(defaultExpiration);
         ResponseEntity<UserDto> response = null;
         dto = userService.insertUser(dto);
         response = new ResponseEntity<UserDto>(dto, HttpStatus.OK);

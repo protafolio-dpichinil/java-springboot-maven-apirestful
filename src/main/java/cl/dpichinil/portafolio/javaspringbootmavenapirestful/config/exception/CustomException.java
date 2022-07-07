@@ -1,4 +1,4 @@
-package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config;
+package cl.dpichinil.portafolio.javaspringbootmavenapirestful.config.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
