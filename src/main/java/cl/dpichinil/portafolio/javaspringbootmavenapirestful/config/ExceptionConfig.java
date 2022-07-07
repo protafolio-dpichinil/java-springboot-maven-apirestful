@@ -20,8 +20,7 @@ public class ExceptionConfig {
         log.error(e.getMessage(), e);
         int code = 1000;
         String message = messageProperties.getGeneralMessage().get(code);
-        ResponseDto response = new ResponseDto(code);
-        response.setMessage(message);
+        ResponseDto response = new ResponseDto(message);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -29,8 +28,7 @@ public class ExceptionConfig {
     private ResponseEntity<ResponseDto> customExceptionHandler(CustomException e){
         log.error(e.getMessage());
         String message = Parse.generateMessageProperties(messageProperties, e.getCode(), e.getModule());
-        ResponseDto response = new ResponseDto(e.getCode());
-        response.setMessage(message);
+        ResponseDto response = new ResponseDto(message);
         return new ResponseEntity<>(response, e.getStatus());
     }
 }

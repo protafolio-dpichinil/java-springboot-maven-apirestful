@@ -23,8 +23,7 @@ public class UserMapper {
         if(dto.getModifiedDate() == null) e.setModifiedDate( new Date() );
         if(dto.getLastLogin() == null) e.setLastLogin( new Date() );
         if( dto.isActive() ) e.setActive(true);
-        List<Phone> list = PhoneMapper.listPhoneDtoToListPhone(dto.getPhones());
-        e.setPhones(list);
+        e.setToken(dto.getToken());
         return e;
     }
 
@@ -40,7 +39,8 @@ public class UserMapper {
         dto.setModifiedDate(sdf.format( e.getModifiedDate() ));
         dto.setLastLogin(sdf.format( e.getLastLogin() ));
         dto.setActive( e.isActive() );
-        List<PhoneDto> list = PhoneMapper.listPhoneToListPhoneDto(e.getPhones());
+        dto.setToken(e.getToken());
+        List<PhoneDto> list = PhoneMapper.listPhoneToListPhoneDto(e.getListPhone());
         dto.setPhones(list);
         return dto;
     }

@@ -40,8 +40,8 @@ public class User {
     @Column(name = "active")
     private boolean active;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<Phone> phones;
+    @OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
+    private List<Phone> listPhone;
 
 
 
