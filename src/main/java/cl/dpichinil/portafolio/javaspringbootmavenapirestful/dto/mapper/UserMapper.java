@@ -2,12 +2,10 @@ package cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.mapper;
 
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.PhoneDto;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.UserDto;
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.persistence.entity.Phone;
 import cl.dpichinil.portafolio.javaspringbootmavenapirestful.persistence.entity.User;
 import lombok.experimental.UtilityClass;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

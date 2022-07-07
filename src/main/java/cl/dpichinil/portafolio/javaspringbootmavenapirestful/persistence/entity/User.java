@@ -1,6 +1,5 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful.persistence.entity;
 
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.dto.PhoneDto;
 import lombok.Data;
 
 import javax.persistence.*;

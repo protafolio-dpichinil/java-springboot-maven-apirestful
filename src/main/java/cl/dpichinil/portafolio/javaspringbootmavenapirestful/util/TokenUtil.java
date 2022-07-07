@@ -55,7 +55,6 @@ public class TokenUtil {
     private static Date generateExpirationDate(ApplicationProperties applicationProperties) {
         long expirationMillis = 0L;
         expirationMillis = applicationProperties.getJwtExpiration() * 1000;
-        //expirationMillis = 60400 * 1000;
         return new Date(System.currentTimeMillis() + expirationMillis);
     }
 

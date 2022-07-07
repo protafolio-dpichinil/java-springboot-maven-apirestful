@@ -1,7 +1,5 @@
 package cl.dpichinil.portafolio.javaspringbootmavenapirestful;
 
-import cl.dpichinil.portafolio.javaspringbootmavenapirestful.util.TokenUtil;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
